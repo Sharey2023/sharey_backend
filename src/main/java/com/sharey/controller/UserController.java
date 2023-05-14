@@ -91,7 +91,12 @@ public class UserController {
     @GetMapping("/user/delete/{seq}")
     public String deleteUser(@PathVariable Long seq){
         userService.deleteUser(seq);
-
         return "redirect:/user/list";
+    }
+    // 로그아웃
+    @GetMapping("user/logout")
+    public String logout(HttpSession session){
+        session.removeAttribute("loginInfo");
+        return "redirect:/";
     }
 }
