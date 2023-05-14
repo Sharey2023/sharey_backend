@@ -38,5 +38,7 @@ class UserServiceTest {
         Long updateSeq = user.update(update);
 
         Assertions.assertThat(user.getSeq()).isEqualTo(updateSeq);
+
+        //update test case 추가
     }
 }
