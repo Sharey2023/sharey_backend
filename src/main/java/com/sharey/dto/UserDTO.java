@@ -11,13 +11,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class UserDTO {
-    private Long seq;
+    // private Long seq;
     private String userId, password, userName;
     private int tel, birthday;
 
     public static UserDTO toUserDTO(UserEntity userEntity){
         UserDTO userDTO = new UserDTO();
-        userDTO.setSeq(userEntity.getSeq());
+       //  userDTO.setSeq(userEntity.getSeq());
         userDTO.setUserId(userEntity.getUserId());
         userDTO.setPassword(userEntity.getPassword());
         userDTO.setUserName(userEntity.getUserName());

@@ -32,7 +32,6 @@ public class UserController {
     // 회원가입 페이지에서 submit 했을 때 요청 처리
     @PostMapping("/signUp.do")
     public String singUp(@ModelAttribute UserDTO userDTO){    // RequestParam은 폼태그에서 넘어온 name값을 각각 가져옴 @RequestParam("id") @ModelAttribute는 Foam태그의 값을 한번에 받음
-        log.info("회원가입 로직 실행");
         userService.save(userDTO);
         return "user/login";
     }
@@ -46,12 +45,12 @@ public class UserController {
     public String login(@ModelAttribute UserDTO userDTO, HttpSession session){
         UserEntity result = userService.login(userDTO);
         if(result != null) {
-            log.info("로그인성공 로그인id : " + result.getUserId());
+            log.info("userController login : 로그인성공 로그인id : " + result.getUserId());
             session.setAttribute("loginInfo", result);
             return "user/main";
         }
         else {
-            log.info("로그인실패");
+            log.info("userController login : 로그인실패");
             return "user/login";
         }
     }
@@ -73,17 +72,26 @@ public class UserController {
         return "user/detail";
     }
 
-    // 회원정보 수정
+    // 회원정보 수정폼 요청
     @GetMapping("/user/update")
     public String updateFoam(HttpSession session, Model model){
-        UserEntity info = (UserEntity)session.getAttribute("loginInfo");
+        UserEntity info = (UserEntity)session.getAttribute("loginInfo");  // 현재 로그인한 사용자의 정보를 세션에서 가져옴.
         //UserEntity userEntity = userService.updateFoam(id);
-        model.addAttribute("userInfo", info);
+        model.addAttribute("userInfo", info);  // 가저온 세션정보를 View엑서 보여주기 위해 add.
         return "user/update";
     }
+    // 회원정보 수정
     @PostMapping("/user/update.do")
     public String updateUser(@ModelAttribute UserDTO userDTO, HttpSession session){
         userService.update(userDTO, session);
+        log.info("userController updateUser Sucess");
         return "redirect:/user/" + userDTO.getUserId();
+    }
+    // 회원 삭제
+    @GetMapping("/user/delete/{seq}")
+    public String deleteUser(@PathVariable Long seq){
+        userService.deleteUser(seq);
+
+        return "redirect:/user/list";
     }
 }

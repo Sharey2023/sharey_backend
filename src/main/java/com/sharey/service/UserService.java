@@ -4,6 +4,7 @@ import com.sharey.dto.UserDTO;
 import com.sharey.entity.UserEntity;
 import com.sharey.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Log4j2
 public class UserService {
     private final UserRepository userRepository;
 
@@ -26,6 +28,7 @@ public class UserService {
         // UserEntity userEntity = UserEntity.toEntity(userDTO);
         UserEntity userEntity = UserEntity.builder().userDTO(userDTO).build();
         userRepository.save(userEntity);
+        log.info("userService save :회원가입 로직 실행");
     }
     // 로그인
     public UserEntity login(UserDTO userDTO) {
@@ -40,9 +43,11 @@ public class UserService {
                 return userEntity;
             }else{
                 // 비밀번호 불일치
+                log.info("userService login : 비밀번호 불일치.");
                 return null;
             }
         }else{ // 조회 결과가 없다
+            log.info("userService login : 조회 결과가 없음.");
             return null;
         }
     }
@@ -58,10 +63,11 @@ public class UserService {
 
     // 회원 상세조회
     public UserDTO userDetail(String id) {
-        Optional<UserEntity> byId = userRepository.findByUserId(id);
+        Optional<UserEntity> byId = userRepository.findByUserId(id);   // 회원 Id를 기준으로 db조회
         if (byId.isPresent()){  // 조회 성공
             return UserDTO.toUserDTO(byId.get());
         }else{  // 조회 결과가 없다
+            log.info("UserService userDetail is null");
             return null;
         }
     }
@@ -81,8 +87,14 @@ public class UserService {
 
     // 회원정보 수정
     public void update(UserDTO userDTO, HttpSession session) {
-        UserEntity user = (UserEntity) session.getAttribute("loginInfo");
-        user.update(userDTO);
-        userRepository.save(user);  // primary Key 값이 테이블에 있는 경우 알아서 Update쿼리를 실행함.
+        UserEntity userEntity = (UserEntity) session.getAttribute("loginInfo");
+        userEntity.update(userDTO);
+        userRepository.save(userEntity);  // primary Key 값이 테이블에 있는 경우 알아서 Update쿼리를 실행함.
+    }
+
+    // 회원 삭제
+    public void deleteUser(Long seq) {
+        userRepository.deleteById(seq);
+        log.info("userService deleteUser : 회원 삭제 완료");
     }
 }
