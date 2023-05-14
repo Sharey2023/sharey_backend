@@ -26,4 +26,6 @@ public class UserDTO {
 
         return userDTO;
     }
+
+    //builder 추가 예정
 }
