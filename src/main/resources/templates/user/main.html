@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>main page</title>
+</head>
+<body>
+    session값 확인 : <p th:text="${session.loginId}" />
+    <a href="/user/update">내 정보 수정</a>
+</body>
+</html>
