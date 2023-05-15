@@ -17,4 +17,6 @@ public class BoardEntity {
     private String title, area, type, content, writer_id;
     private int view_cnt;
     private LocalDateTime localDateTime;
+
+    //test
 }
