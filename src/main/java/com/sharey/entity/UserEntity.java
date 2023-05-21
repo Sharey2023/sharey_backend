@@ -1,18 +1,20 @@
 package com.sharey.entity;
 
-import com.sharey.dto.UserDTO;
+import com.sharey.dto.user.SignUpReqDTO;
+import com.sharey.dto.user.UserDTO;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.apache.catalina.User;
 
 import javax.persistence.*;
-import java.util.Optional;
 
 @Entity
 @Getter
 @Table(name = "users")
 @NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class UserEntity {
     // html파일의 name과 잂치해야 함.
 
@@ -29,42 +31,30 @@ public class UserEntity {
     @Column
     private String userName;
 
-    @Column(length = 8)
-    private int birthday;
+    @Column
+    private String birthday;
 
     @Column
-    private int tel;
+    private String tel;
 
-    /*public static UserEntity toEntity(UserDTO userDTO){   // DTO -> Entity
-        UserEntity userEntity = new UserEntity();
-        userEntity.userId = userDTO.getUserId();
-        userEntity.password = userDTO.getPassword();
-        userEntity.userName = userDTO.getUserName();
-        userEntity.birthday = userDTO.getBirthday();
-        userEntity.tel = userDTO.getTel();
-        return userEntity;
-    }
-    public static UserEntity toUpdateEntity(UserDTO userDTO){   // DTO -> Entity
-        UserEntity userEntity = new UserEntity();
-        userEntity.seq = userDTO.getSeq();
-        userEntity.userId = userDTO.getUserId();
-        userEntity.password = userDTO.getPassword();
-        userEntity.userName = userDTO.getUserName();
-        userEntity.birthday = userDTO.getBirthday();
-        userEntity.tel = userDTO.getTel();
-        return userEntity;
-    }*/
+    @Column
+    private String email;
 
+    @Column
+    private String nickname;
+
+/*
     @Builder
-    public UserEntity(UserDTO userDTO) {
-        this.userId = userDTO.getUserId();
-        this.password = userDTO.getPassword();
-        this.userName = userDTO.getUserName();
-        this.tel = userDTO.getTel();
-        this.birthday = userDTO.getBirthday();
+    public UserEntity(String userId, String password, String userName, String tel, String birthday) {
+        this.userId = userId;
+        this.password = password;
+        this.userName = userName;
+        this.tel = tel;
+        this.birthday = birthday;
     }
+*/
 
-    public Long update(UserDTO userDTO){
+/*    public Long update(UserDTO userDTO){
         this.userId = userDTO.getUserId();
         this.password = userDTO.getPassword();
         this.userName = userDTO.getUserName();
@@ -72,5 +62,5 @@ public class UserEntity {
         this.birthday = userDTO.getBirthday();
 
         return this.seq;
-    }
+    }*/
 }

@@ -1,6 +1,7 @@
+/*
 package com.sharey.controller;
 
-import com.sharey.dto.UserDTO;
+import com.sharey.dto.user.UserDTO;
 import com.sharey.entity.UserEntity;
 import com.sharey.service.UserService;
 
@@ -9,7 +10,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -31,18 +31,17 @@ public class UserController {
     }
     // 회원가입 페이지에서 submit 했을 때 요청 처리
     @PostMapping("/signUp.do")
-    public String singUp(@ModelAttribute UserDTO userDTO){    // RequestParam은 폼태그에서 넘어온 name값을 각각 가져옴 @RequestParam("id") @ModelAttribute는 Foam태그의 값을 한번에 받음
+    public String singUp(UserDTO userDTO){    // RequestParam은 폼태그에서 넘어온 name값을 각각 가져옴 @RequestParam("id") @ModelAttribute는 Foam태그의 값을 한번에 받음
         userService.save(userDTO);
         return "user/login";
     }
-    // Request Loing
+    // Request Login
     @GetMapping("/user/login")
     public String loginForm(){
         return "user/login";
     }
-
     @PostMapping("/login.do")
-    public String login(@ModelAttribute UserDTO userDTO, HttpSession session){
+    public String login(UserDTO userDTO, HttpSession session){
         UserEntity result = userService.login(userDTO);
         if(result != null) {
             log.info("userController login : 로그인성공 로그인id : " + result.getUserId());
@@ -82,7 +81,7 @@ public class UserController {
     }
     // 회원정보 수정
     @PostMapping("/user/update.do")
-    public String updateUser(@ModelAttribute UserDTO userDTO, HttpSession session){
+    public String updateUser(UserDTO userDTO, HttpSession session){
         userService.update(userDTO, session);
         log.info("userController updateUser Sucess");
         return "redirect:/user/" + userDTO.getUserId();
@@ -99,4 +98,4 @@ public class UserController {
         session.removeAttribute("loginInfo");
         return "redirect:/";
     }
-}
+}*/

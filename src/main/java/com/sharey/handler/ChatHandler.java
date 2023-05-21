@@ -1,6 +1,7 @@
 package com.sharey.handler;
 
 import lombok.extern.log4j.Log4j2;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -11,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-@Log4j2
+@Slf4j
 public class ChatHandler extends TextWebSocketHandler {
 
     public static List<WebSocketSession> list = new ArrayList<>();
