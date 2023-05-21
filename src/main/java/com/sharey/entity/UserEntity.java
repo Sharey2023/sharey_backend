@@ -38,9 +38,6 @@ public class UserEntity {
     private String tel;
 
     @Column
-    private String email;
-
-    @Column
     private String nickname;
 
 /*

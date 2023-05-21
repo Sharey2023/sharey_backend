@@ -14,7 +14,6 @@ public class UserRespDTO {
     private String userName;
     private String tel;
     private String birthday;
-    private String email;
     private String nickname;
 
     public UserRespDTO(UserEntity entity){
@@ -24,7 +23,6 @@ public class UserRespDTO {
         this.userName = entity.getUserName();
         this.tel = entity.getTel();
         this.birthday = entity.getBirthday();
-        this.email = entity.getEmail();
         this.nickname = entity.getNickname();
     }
 }

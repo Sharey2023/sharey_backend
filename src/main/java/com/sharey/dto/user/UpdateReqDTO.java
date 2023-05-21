@@ -13,7 +13,6 @@ public class UpdateReqDTO {
     private String userName;
     private String tel;
     private String birthday;
-    private String email;
     private String nickname;
 
     public static UserEntity toEntity(UpdateReqDTO dto){
@@ -24,7 +23,6 @@ public class UpdateReqDTO {
                 .userName(dto.getUserName())
                 .tel(dto.getTel())
                 .birthday(dto.getBirthday())
-                .email(dto.getEmail())
                 .nickname(dto.getNickname())
                 .build();
     }
