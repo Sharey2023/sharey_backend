@@ -1,4 +1,4 @@
-package com.sharey.dto;
+package com.sharey.dto.user;
 
 import com.sharey.entity.UserEntity;
 import lombok.Getter;
@@ -12,10 +12,10 @@ import lombok.ToString;
 @ToString
 public class UserDTO {
     // private Long seq;
-    private String userId, password, userName;
-    private int tel, birthday;
+/*    private String userId, password, userName;
+    private int tel, birthday;*/
 
-    public static UserDTO toUserDTO(UserEntity userEntity){
+ /*   public static UserDTO toUserDTO(UserEntity userEntity){
         UserDTO userDTO = new UserDTO();
        //  userDTO.setSeq(userEntity.getSeq());
         userDTO.setUserId(userEntity.getUserId());
@@ -25,5 +25,5 @@ public class UserDTO {
         userDTO.setBirthday(userEntity.getBirthday());
 
         return userDTO;
-    }
+    }*/
 }
