@@ -88,6 +88,7 @@ public class SwaggerUserController {
     // 회원정보 수정
     // 회원정보 수정폼에 들어갈 데이터 요청
     @GetMapping("/update/{id}")
+    @ApiOperation(value = "정보수정할 회원정보 요청")
     public ResponseDTO<UserRespDTO> editDetail(@PathVariable String id){  // rest API 방식을 이용할 때 즉 경로상의 값을 가져올 때 PathVariable사용
         UserRespDTO dto = userService.userDetail(id);
         return new ResponseDTO<>(HttpStatus.OK, dto);

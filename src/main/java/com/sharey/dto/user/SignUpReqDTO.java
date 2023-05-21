@@ -14,7 +14,6 @@ public class SignUpReqDTO {
     private String userName;
     private String tel;
     private String birthday;
-    private String email;
     private String nickname;
 
     public static UserEntity toEntity(SignUpReqDTO dto){
@@ -24,7 +23,6 @@ public class SignUpReqDTO {
                 .userName(dto.getUserName())
                 .tel(dto.getTel())
                 .birthday(dto.getBirthday())
-                .email(dto.getEmail())
                 .nickname(dto.getNickname())
                 .build();
     }
