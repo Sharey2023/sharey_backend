@@ -1,7 +1,10 @@
 package com.sharey.repository;
 
+import com.sharey.entity.BoardEntity;
 import com.sharey.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -13,6 +16,6 @@ public interface UserRepository extends JpaRepository<UserEntity, Long> {
     Optional<UserEntity> findByUserId(String id);
     // 전체 회원목록 조회
     List<UserEntity> findAll();
-    // 닉네임 중복 확인
-    Optional<UserEntity> findByNickname(String nickname);
+    // 닉네임 중복 확인, nick -> seq
+    UserEntity findByNickname(String nickname);
 }

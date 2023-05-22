@@ -1,11 +1,10 @@
-package com.sharey.dto.user;
+package com.sharey.dto.board;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.messaging.Message;
 
 @Data
 @NoArgsConstructor
