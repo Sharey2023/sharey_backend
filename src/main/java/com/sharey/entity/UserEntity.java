@@ -37,7 +37,7 @@ public class UserEntity {
     @Column
     private String tel;
 
-    @Column
+    @Column(unique = true, length = 20)
     private String nickname;
 
 /*

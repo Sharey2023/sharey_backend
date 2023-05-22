@@ -25,4 +25,7 @@ public class UserRespDTO {
         this.birthday = entity.getBirthday();
         this.nickname = entity.getNickname();
     }
+    public String getNick(UserEntity entity){
+        return entity.getNickname();
+    }
 }
